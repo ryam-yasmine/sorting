@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+c'est une version non finie (brouillon) le programme fonctionne correctement
+mais la fonction random me donne souvent la meme valeur pour cela j'ai ajouté la
+fonction splice pour pouvoir renvoyer à chaque fois un nouveau vecteur réduit
+mais la fonction s'arrete au milieu du vecteur
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script language="javascript">
+      var v = [5, 9, 15, 6, 2, 14, 13, 1, 7, 3, 12, 2, 4, 8, 10, 11, 16];
+      var r = 0;
+      //tirer une carte aléatoire
+      function carte() {
+        r = Math.floor(Math.random() * (v.length - 1) + 1);
+        //renvoyer un nouveau vecteur qui élimine la carté tirée
+        v.splice(v.indexOf(r), 1);
+        return r;
+      }
+      let i = 0;
+      var jeu = [];
+      while (i < v.length) {
+        var card = v[carte()];
+        if (card > jeu) {
+          jeu.push(card);
+        } else {
+          var tri = 0;
+          for (let j = 0; j < jeu.length; j++) {
+            if (card < jeu[j]) {
+              tri = jeu[j];
+              jeu[j] = card;
+              card = tri;
+            }
+          }
+          jeu.push(card);
+        }
+        i++;
+      }
+      console.log(jeu);
+    </script>
+  </body>
+</html>
